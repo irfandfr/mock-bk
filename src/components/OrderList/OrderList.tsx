@@ -35,6 +35,9 @@ export default function OrderList({orderAmount}:OrderListProp){
         <>
           <div className={`${barlow.className}`}>
             {
+              orderList.length === 0 && <p className="text-[#919191]">Your cart is empty...</p>
+            }
+            {
               orderList.filter((i,index) => index < 3).map((order,index) => {
                 return(
                   <div key={order.title+index} className='flex justify-between align-start pb-3 h-[80px] border-b mb-2'>

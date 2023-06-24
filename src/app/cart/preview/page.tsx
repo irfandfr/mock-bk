@@ -1,6 +1,7 @@
 "use client";
 
 import { addRadixToNumber } from "@/app/utils/util";
+import InputText from "@/components/InputText/InputText";
 import { OrderProps } from "@/components/types/types";
 import { Barlow } from "next/font/google";
 import Link from "next/link";
@@ -63,64 +64,66 @@ export default function PreviewPage() {
   }
 
   return (
-    <div className="order-table w-full shadow-lg bg-white flex flex-col lg:flex-row rounded-[10px]">
+    <div className="order-table w-full shadow-lg bg-white flex flex-col lg:flex-row rounded-[10px] mb-40">
       <div className="w-full lg:w-[70%] border-b lg:border-r py-[30px] px-[25px]">
-        <table className="w-full text-[#404040]">
-          <tbody>
-            <tr className="text-left font-normal text-[15px]">
-              <th colSpan={2} className="font-normal">
-                Menu Item
-              </th>
-              <th className="font-normal">Quantity</th>
-              <th className="font-normal text-right min-w-[120px]">Sub Total</th>
-              <th></th>
-            </tr>
-            {orderList.map((order,index) => {
-              return (
-                <tr key={order.title+index} className="text-[14px] font-light">
-                  <td className="w-[74px]" style={{paddingRight: '10px'}}>
-                    <div className="aspect-[3/2] h-[40px] bg-neutral-500 "></div>
-                  </td>
-                  <td className="max-w-[240px] w-full">
-                    <div>
-                      <p className="mb-1">{order.title}</p>
-                      {
-                        order.extras?.map((extra,index) => (
-                          <p key={extra.title+index} className="text-xs text-[#919191]">{`${extra.amount} x ${extra.title}`}</p>
-                        ))
-                      }
-                    </div>
-                  </td>
-                  <td>
-                    <div className="w-full flex px-1 justify-between text-[17px] text-[#ed7801] border rounded-[5px] items-center">
-                      <button
-                        className="text-xl leading-[10px]"
-                        onClick={() => changeOrderAmount("DECREMENT",index)}
-                      >
-                        -
-                      </button>
-                      <p className="text-[#000000]">{order.amount}</p>
-                      <button
-                        className="text-xl leading-[10px]"
-                        onClick={() => changeOrderAmount("INCREMENT",index)}
-                      >
-                        +
-                      </button>
-                    </div>
-                  </td>
-                  <td className="text-right">Rp. {addRadixToNumber(+order.total_price * +order.amount)}</td>
-                  <td className="min-w-[30px]">
-                    <div className="w-full grid place-content-center mt-0.5">
-                      <button onClick={() => deleteOrder(index)}>
-                        <img src="https://bkdelivery.co.id/static/website/img/cart-remove1x.2d89a8db571c.png" alt="bin icon" loading="lazy" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {orderList.length === 0 ? <p className={`text-[#919191] font-light text-md ${barlow.className}`}>Your cart is empty...</p> :
+          <table className="w-full text-[#404040]">
+            <tbody>
+              <tr className="text-left font-normal text-[15px]">
+                <th colSpan={2} className="font-normal">
+                  Menu Item
+                </th>
+                <th className="font-normal">Quantity</th>
+                <th className="font-normal text-right min-w-[120px]">Sub Total</th>
+                <th></th>
+              </tr>
+              {orderList.map((order,index) => {
+                return (
+                  <tr key={order.title+index} className="text-[14px] font-light">
+                    <td className="w-[74px]" style={{paddingRight: '10px'}}>
+                      <div className="aspect-[3/2] h-[40px] bg-neutral-500 "></div>
+                    </td>
+                    <td className="max-w-[240px] w-full">
+                      <div>
+                        <p className="mb-1">{order.title}</p>
+                        {
+                          order.extras?.map((extra,index) => (
+                            <p key={extra.title+index} className="text-xs text-[#919191]">{`${extra.amount} x ${extra.title}`}</p>
+                          ))
+                        }
+                      </div>
+                    </td>
+                    <td>
+                      <div className="w-full flex px-1 justify-between text-[17px] text-[#ed7801] border rounded-[5px] items-center">
+                        <button
+                          className="text-xl leading-[10px]"
+                          onClick={() => changeOrderAmount("DECREMENT",index)}
+                        >
+                          -
+                        </button>
+                        <p className="text-[#000000]">{order.amount}</p>
+                        <button
+                          className="text-xl leading-[10px]"
+                          onClick={() => changeOrderAmount("INCREMENT",index)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </td>
+                    <td className="text-right">Rp. {addRadixToNumber(+order.total_price * +order.amount)}</td>
+                    <td className="min-w-[30px]">
+                      <div className="w-full grid place-content-center mt-0.5">
+                        <button onClick={() => deleteOrder(index)}>
+                          <img src="https://bkdelivery.co.id/static/website/img/cart-remove1x.2d89a8db571c.png" alt="bin icon" loading="lazy" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        }
         <div className="pt-[25px] pb-[15px] ">
           <Link
             href="/menus"
@@ -129,17 +132,15 @@ export default function PreviewPage() {
             Continue Shopping
           </Link>
         </div>
-        <p className={`text-xs font-bold mb-1 ${barlow.className}`}>Add text</p>
-        <input
-          type="text"
-          className={`font-light text-sm border w-full py-3 px-2 rounded-[5px]`}
-          value={note}
-          onChange={(e) => onChangeNote(e.target.value)}
-          placeholder="Add notes to your order here..."
-        />
-        <div className="w-full font-light text-xs text-[#b7b7b7] flex justify-end mt-2.5 mb-10">
-          {note.length}/15
-        </div>
+        {orderList.length > 0 &&
+          <>
+            <p className={`text-xs font-bold mb-1 ${barlow.className}`}>Add text</p>
+              <InputText value={note} onChange={(e) => onChangeNote(e.target.value)} placeholder="Add notes to your order here..."/>
+            <div className="w-full font-light text-xs text-[#b7b7b7] flex justify-end mt-2.5 mb-10">
+              {note.length}/15
+            </div>
+          </>
+        }
       </div>
       <div className="w-full lg:w-[30%] py-[30px] px-[25px] text-[#404040]">
         <p className="font-light text-sm">Order Subtotal*</p>
@@ -147,7 +148,9 @@ export default function PreviewPage() {
         <p className="font-light text-xs mt-4 text-[#909090]">
           *Price might change due to your delivery location.
         </p>
-        <Link href="/cart/delivery" className='block w-full py-[7px] rounded-[5px] mt-6 h-min text-center text-white text-xl bg-[#ed7801]'>Continue</Link>
+        {orderList.length > 0 &&
+          <Link href="/cart/delivery" className='block w-full py-[7px] rounded-[5px] mt-6 h-min text-center text-white text-xl bg-[#ed7801]'>Continue</Link>
+        }
       </div>
     </div>
   );
