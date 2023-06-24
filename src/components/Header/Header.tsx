@@ -15,9 +15,9 @@ interface NavItemProp {
 }
 function NavItem({ title, subtitle, link }: NavItemProp) {
   return (
-    <a href={link} className="flex flex-col mr-[40px]">
-      <span className="subtitle">{subtitle}</span>
-      <span className="title ">{title}</span>
+    <a href={link} className="flex flex-col mr-5 lg:mr-[40px]">
+      <span className="hidden lg:block text-[#faaf18] text-xs">{subtitle}</span>
+      <span className="text-white text-lg leading-[10px] lg:text-2xl lg:font-semibold">{title}</span>
     </a>
   );
 }
@@ -56,19 +56,19 @@ export default function Header({ orderAmount }: HeaderProp) {
   }, [orderAmount]);
   return (
     <header
-      className={`${flame.className} header fixed top-0 lg:absolute w-full h-[76px] lg:flex justify-center`}
+      className={`${flame.className} header fixed top-0 lg:absolute w-full h-[50px] lg:h-[76px] lg:flex justify-center`}
     >
-      <div className="header-bg h-full z-10 w-full flex justify-center">
+      <div className="header-bg h-full z-10 w-full flex justify-center px-[15px] lg:px-0">
         <div className="content h-full w-[960px] flex relative items-center">
-          <Link href="/" className="absolute top-[10px] left-[-125px]">
+          <Link href="/" className=" absolute left-[50%] lg:top-[10px] lg:left-[-125px]">
             <img
-              className="h-[90px] w-[90px]"
+              className="h-[40px] lg:h-[90px]  w-auto aspect-square"
               src="https://bkdelivery.co.id/static/website/img/logo_2022.38d01a7c7dd3.png"
               srcSet="https://bkdelivery.co.id/static/website/img/logo_2022.38d01a7c7dd3.png,
                       https://bkdelivery.co.id/static/website/img/logo_2022_x2.6bb6d972f0a5.png 2x"
             ></img>
           </Link>
-          <nav className="flex justify-center mr-auto">
+          <nav className="flex justify-center ml-auto lg:ml-0 lg:mr-auto">
             {navs.map(({ title, subtitle, link }, index) => {
               return (
                 <NavItem
@@ -104,7 +104,7 @@ export default function Header({ orderAmount }: HeaderProp) {
         </div>
       </div>
       <div
-        className={`absolute transition ease-in-out ${newNotification ? 'translate-y-[32px]' : 'translate-y-0' } w-full z-0 left-0 bottom-0 
+        className={`absolute transition ease-in-out ${newNotification ? 'translate-y-[32px]' : 'translate-y-0' } w-full z-[-1] lg:z-0 left-0 bottom-0 
         font-normal py-1 grid place-content-center bg-green-500 text-white ${barlow.className}`}
       >
         {amountRef.current.new} item added to the cart

@@ -153,10 +153,10 @@ export default function ProductPage() {
   }
 
   return (
-    <div className={`product-item w-full flex ${flame.className} mb-14`}>
+    <div className={`product-item w-full flex flex-col lg:flex-row ${flame.className} mb-14`}>
       {productInfo && (
         <>
-          <div className="w-[63%] px-5 py-9">
+          <div className="w-full lg:w-[63%] px-5 py-9">
             <h2 className="text-[30px] text-center text-[#502314]">
               {productInfo.title}
             </h2>
@@ -167,9 +167,9 @@ export default function ProductPage() {
               <img
                 src="https://media-order.bkdelivery.co.id/thumb/group_photo/2023/3/15/kyhwcbzvlkeiqyjncprjjg_product_list.jpg"
                 alt="mock image of a menu, may not reflect accurately"
-                className="image w-full max-h-[290px] bg-black aspect-square mr-[2%]"
+                className="image w-auto max-h-[290px] bg-black aspect-[4/3] mr-[2%]"
               />
-              <div className="w-[50%] text-[#404040]">
+              <div className="w-full lg:w-[50%] text-[#404040]">
                 {typeof productInfo.price === "object" && (
                   <>
                     {}
@@ -295,7 +295,7 @@ export default function ProductPage() {
             )}
           </div>
           <div className="w-1 border-r border-r-neutral-800 opacity-20"></div>
-          <div className="w-[37%] px-5 py-9">
+          <div className="w-full lg:w-[37%] px-5 py-9">
             <h2 className="text-[28px] text-[#404040]">
               Rp. {addRadixToNumber(billing.total_meal)}
             </h2>
