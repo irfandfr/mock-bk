@@ -1,0 +1,17 @@
+.footer{
+  background-color: var(--nav-bg);
+  color: var(--light-text);
+  .content{
+    width: 100%;
+    max-width: 960px;
+
+    h5{
+      font-size: 20px;
+    }
+  }
+
+  .navs{
+    color: var(--muted-text)
+  }
+}
+

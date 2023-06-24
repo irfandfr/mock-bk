@@ -1,0 +1,10 @@
+.categories{
+  .category-item{
+    color: var(--body-text);
+    background: var(--muted-accent);
+
+    &.active{
+      background: var(--accent-color);
+    }
+  }
+}

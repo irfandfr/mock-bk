@@ -2,26 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --header-text: #8b542f;
+  --light-text: #fff;
+  --muted-text:#919191;
+  --accent-color: #faaf18;
+  --muted-accent: #fbe6d6;
+  --btn-color: #ed7801;
+  --nav-bg: #2d2d2d;
+  --body-text: #502314;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-image: url(https://bkdelivery.co.id/static/website/img/BK_bg.jpg?5218847fa211);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+main{
+  max-width: 960px;
+  width: 100%;
+  padding-top: 100px;
 }

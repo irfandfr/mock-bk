@@ -1,0 +1,23 @@
+.header{
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+  
+  .header-bg{
+    background: var(--nav-bg);
+  }
+  nav{
+    .subtitle{
+      color: var(--accent-color);
+      font-size: 13px;
+    }
+    .title{
+      color: var(--light-text);
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 25px;
+    }
+  }
+
+  .login-btn{
+    color: var(--light-text);
+  }
+}
